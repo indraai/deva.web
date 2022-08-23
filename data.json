@@ -29,8 +29,8 @@
         "speed": 1
       },
       "profile": {
-        "emoji": ":emoji:",
-        "avatar": ":avatar:",
+        "emoji": "/public/devas/web/emoji.png",
+        "avatar": "/public/devas/web/avatar.png",
         "background": "",
         "describe": "Web Deva for calling website http/https resources.",
         "gender": "M"
