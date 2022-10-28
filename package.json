@@ -1,6 +1,6 @@
 {
   "name": "@indra.ai/webdeva",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "The Web Deva",
   "main": "index.js",
   "scripts": {
