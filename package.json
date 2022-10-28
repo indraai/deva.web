@@ -1,5 +1,5 @@
 {
-  "name": "@feecting/webdeva",
+  "name": "@indra.ai/webdeva",
   "version": "0.0.4",
   "description": "The Web Deva",
   "main": "index.js",
@@ -20,7 +20,7 @@
     "url": "https://github.com/indraai/WebDeva/issues"
   },
   "dependencies": {
-    "@feecting/deva": "^1.0.25",
+    "@indra.ai/deva": "^1.0.25",
     "axios": "^0.21.4",
     "cheerio": "^1.0.0-rc.10"
   },
