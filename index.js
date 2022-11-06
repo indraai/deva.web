@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const {XMLParser} = require('fast-xml-parser');
 
 const data_path = path.join(__dirname, 'data.json');
 const {agent,vars} = require(data_path).data;
@@ -31,7 +32,9 @@ const WEB = new Deva({
   },
   vars,
   listeners: {},
-  modules: {},
+  modules: {
+    xmlparser: false,
+  },
   deva: {},
   func: {
     get(url) {
@@ -104,9 +107,9 @@ const WEB = new Deva({
           headers: this.vars.headers
         }).then(result => {
           try {
-            text = JSON.stringify(result.data, null, 2);
-            html = `<pre><code>${JSON.stringify(result.data, null, 2)}</code></pre>`;
-            data = result.data;
+            const data = this.modules.xmlparser.parse(result.data);
+            const text = JSON.stringify(data, null, 2);
+            const html = `<pre><code>${JSON.stringify(data, null, 2)}</code></pre>`;
           } catch (e) {
             return this.error(e, url, reject);
           } finally {
@@ -149,5 +152,9 @@ const WEB = new Deva({
       });
     },
   },
+  onInit() {
+    this.modules.xmlparser = new XMLParser();
+    return this.start();
+  }
 });
 module.exports = WEB
