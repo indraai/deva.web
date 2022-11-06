@@ -111,7 +111,7 @@ const WEB = new Deva({
             const {channel} = this.modules.xmlparser.parse(result.data).rss;
             const buildrss = [
               `# ${channel.title}`,
-              `describe: ${channel.description}`,
+              `p: ${channel.description}`,
               `published: ${channel.lastBuildDate}`,
               `link[${this.agent.translate(channel.title)}]:${channel.link}`,
               `copyright: ${channel.copyright}`,
@@ -120,10 +120,9 @@ const WEB = new Deva({
             channel.item.forEach(itm => {
               const item = [
                 `## ${itm.title}`,
-                `date: ${itm.pubDate}`,
+                `p: ${itm.description.replace(/<\/?p>/g, '')}`,
                 `link[${this.agent.translate(itm.title)}]:${itm.link}`,
-                `describe: ${itm.description.replace(/<\/?p>/g, '')}`,
-                `\n--\n`,
+                `date: ${itm.pubDate}`,
               ].join('\n');
               buildrss.push(item);
             });
