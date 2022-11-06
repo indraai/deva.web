@@ -19,7 +19,7 @@ const WEB = new Deva({
     voice: agent.voice,
     profile: agent.profile,
     translate(input) {
-      return input.trim();
+      return input.trim().replace(/[$|#|@]/g, '');
     },
     parse(input) {
       input = input.replace(/</g, '&lt;')
@@ -102,19 +102,44 @@ const WEB = new Deva({
     ***************/
     rss(url) {
       return new Promise((resolve, reject) => {
+        let data, text;
         if (!url) return reject('NO URL');
         axios.get(url, {
           headers: this.vars.headers
         }).then(result => {
           try {
-            const data = this.modules.xmlparser.parse(result.data);
-            const text = JSON.stringify(data, null, 2);
-            const html = `<pre><code>${JSON.stringify(data, null, 2)}</code></pre>`;
+            const {channel} = this.modules.xmlparser.parse(result.data).rss;
+            const buildrss = [
+              `# ${channel.title}`,
+              `describe: ${channel.description}`,
+              `published: ${channel.lastBuildDate}`,
+              `link[${this.agent.translate(channel.title)}]:${channel.link}`,
+              `copyright: ${channel.copyright}`,
+              `\n-\n`,
+            ];
+            channel.item.forEach(itm => {
+              const item = [
+                `## ${itm.title}`,
+                `date: ${itm.pubDate}`,
+                `link[${this.agent.translate(itm.title)}]:${itm.link}`,
+                `describe: ${itm.description.replace(/<\/?p>/g, '')}`,
+                `\n--\n`,
+              ].join('\n');
+              buildrss.push(item);
+            });
+            text = buildrss.join('\n\n');
+            data = channel;
           } catch (e) {
             return this.error(e, url, reject);
           } finally {
-            return resolve({text,html,data});
+            return this.question(`#feecting parse:${this.agent.key} ${text}`);
           }
+        }).then(parsed => {
+          return resolve({
+            text:parsed.a.text,
+            html:parsed.a.html,
+            data
+          });
         }).catch(err => {
           console.log('web error', err)
           return this.error(err);
@@ -151,6 +176,9 @@ const WEB = new Deva({
         }).catch(reject);
       });
     },
+  },
+  onError(err) {
+    console.error(err);
   },
   onInit() {
     this.modules.xmlparser = new XMLParser();
