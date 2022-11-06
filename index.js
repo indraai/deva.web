@@ -44,29 +44,74 @@ const WEB = new Deva({
           const rArray = Array.isArray(result.data);
 
           let text, html, data = {};
-
-          if (rObject || rArray) {
-            text = JSON.stringify(result.data, null, 2);
-            html = `<pre><code>${JSON.stringify(result.data, null, 2)}</code></pre>`;
-            data = result.data;
+          const htmldata = result.data.toLowerCase().includes('<body');
+          if (htmldata) {
+            const body = result.data;
+            const _$ = cheerio.load(body, null, false);
+            text = _$.text();
+            html = _$.html();
+            data = {};
           }
           else {
-            const htmldata = result.data.toLowerCase().includes('<body');
-            if (htmldata) {
-              const body = result.data;
-              const _$ = cheerio.load(body, null, false);
-
-              text = _$.text();
-              html = _$.html();
-              data = {};
-            }
-            else {
-              text = result.data;
-              html = `<pre><code>${this.agent.parse(result.data)}</code></pre>`;
-            }
+            text = result.data;
+            html = `<pre><code>${this.agent.parse(result.data)}</code></pre>`;
           }
 
           return resolve({text,html,data});
+        }).catch(err => {
+          console.log('web error', err)
+          return this.error(err);
+        })
+      });
+    },
+
+    /**************
+    func: json
+    params: url
+    describe: return a json data url
+    ***************/
+    json(url) {
+      return new Promise((resolve, reject) => {
+        if (!url) return reject('NO URL');
+        axios.get(url, {
+          headers: this.vars.headers
+        }).then(result => {
+          try {
+            text = JSON.stringify(result.data, null, 2);
+            html = `<pre><code>${JSON.stringify(result.data, null, 2)}</code></pre>`;
+            data = result.data;
+          } catch (e) {
+            return reject(e, opts, reject);
+          } finally {
+            return resolve({text,html,data});
+          }
+        }).catch(err => {
+          console.log('web error', err)
+          return this.error(err);
+        })
+      });
+    },
+
+    /**************
+    func: rss
+    params: url
+    describe: Return a rss feed
+    ***************/
+    rss(url) {
+      return new Promise((resolve, reject) => {
+        if (!url) return reject('NO URL');
+        axios.get(url, {
+          headers: this.vars.headers
+        }).then(result => {
+          try {
+            text = JSON.stringify(result.data, null, 2);
+            html = `<pre><code>${JSON.stringify(result.data, null, 2)}</code></pre>`;
+            data = result.data;
+          } catch (e) {
+            return this.error(e, url, reject);
+          } finally {
+            return resolve({text,html,data});
+          }
         }).catch(err => {
           console.log('web error', err)
           return this.error(err);
@@ -77,6 +122,12 @@ const WEB = new Deva({
   methods: {
     get(packet) {
       return this.func.get(packet.q.text);
+    },
+    json(packet) {
+      return this.func.json(packet.q.text);
+    },
+    rss(packet) {
+      return this.func.rss(packet.q.text);
     },
     uid(packet) {
       return Promise.resolve(this.uid());

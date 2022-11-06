@@ -47,9 +47,9 @@
         "error": "💣 ERROR!"
       },
       "headers": {
-        "USER": "DevaUI https://github.com/indraai/DevaUI",
-        "HASH": "0x01236101116194039424450535866676870104105767881838587106",
-        "AGENT": "#DEVA:5380514963421"
+        "USER": "Indra:WebDeva https://indra.ai",
+        "HASH": "0x5005309339223",
+        "AGENT": "#WebDeva:5005309339223"
       }
     }
   }

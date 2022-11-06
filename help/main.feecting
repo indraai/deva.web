@@ -5,7 +5,13 @@ p:The Web Deva helps all the other Devas with their calling websites to get info
 ### Mehtods
 
 cmd:#web get *url*
-p:This method will return the data from a specific url resource.
+p:This method will return the data from a specific url.
+
+cmd:#web json *url*
+p:This method will return a json file from a specific url.
+
+cmd:#web rss *url*
+p:This method will return a rss feed from a specific url.
 
 cmd:#web uid
 p:Get a unique id from the Web Deva Agent.
