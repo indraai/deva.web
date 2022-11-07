@@ -118,12 +118,17 @@ const WEB = new Deva({
               `\n-\n`,
             ];
             channel.item.forEach(itm => {
+              let $desc = itm.description ? cheerio.load(itm.description, null, false) : false;
+              $desc = $desc.text();
               const item = [
-                `## ${itm.title}`,
-                `p: ${itm.description.replace(/<\/?p>/g, '')}`,
-                `link[${this.agent.translate(itm.title)}]:${itm.link}`,
-                `date: ${itm.pubDate}`,
-              ].join('\n');
+                `::begin:rssitem`,
+                `## ${itm.title.replace(/\n/g, '')}`,
+                $desc ? `p: ${this.lib.trimText($desc, 300)}` : '',
+                itm.link ? `link[${this.agent.translate(itm.title)}]:${itm.link}` : '',
+                !itm.link && itm.guid ? `link[${this.agent.translate(itm.title)}]:${itm.guid}` : '',
+                itm.pubDate ? `date: ${itm.pubDate}` : '',
+                `::end:rssitem`,
+              ].join('\n\n');
               buildrss.push(item);
             });
             text = buildrss.join('\n\n');
