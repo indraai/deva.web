@@ -37,6 +37,29 @@ const WEB = new Deva({
   },
   deva: {},
   func: {
+    /**************
+    func: post
+    params: opts
+    describe: post data to a url
+    ***************/
+    post(opts) {
+      return new Promise((resolve, reject) => {
+        if (!opts.text) return reject('NO URL');
+        axios.post(opts.text, opts.data).then(res => {
+          console.log('POST RETURN ', res.data[0]);
+          return resolve({
+            text: 'POST DATA',
+            html: 'POST DATA',
+            data: res.data,
+          });
+        }).catch(reject)
+      });
+    },
+    /**************
+    func: get
+    params: url
+    describe: get a url response.
+    ***************/
     get(url) {
       return new Promise((resolve, reject) => {
         if (!url) return reject('NO URL');
@@ -152,6 +175,9 @@ const WEB = new Deva({
     }
   },
   methods: {
+    post(packet) {
+      return this.func.post(packet.q);
+    },
     get(packet) {
       return this.func.get(packet.q.text);
     },
