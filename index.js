@@ -1,13 +1,24 @@
 // Copyright (c)2022 Quinn Michaels
-const fs = require('fs');
-const path = require('path');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const {XMLParser} = require('fast-xml-parser');
 
-const data_path = path.join(__dirname, 'data.json');
-const {agent,vars} = require(data_path).data;
+const package = require('./package.json');
+const info = {
+  id: package.id,
+  name: package.name,
+  version: package.version,
+  author: package.author,
+  describe: package.description,
+  dir: __dirname,
+  url: package.homepage,
+  git: package.repository.url,
+  bugs: package.bugs.url,
+  license: package.license,
+  copyright: package.copyright
+};
 
+const {agent,vars} = require('./data.json').DATA;
 const Deva = require('@indra.ai/deva');
 const WEB = new Deva({
   agent: {

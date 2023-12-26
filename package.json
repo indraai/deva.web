@@ -1,6 +1,10 @@
 {
+  "id": 5005309339223,
   "name": "@indra.ai/webdeva",
   "version": "0.0.12",
+  "author": "Quinn Michaels",
+  "license": "MIT",
+  "copyright": "2023",
   "description": "The Web Deva",
   "main": "index.js",
   "scripts": {
@@ -12,18 +16,17 @@
   },
   "keywords": [
     "Web",
-    "Deva"
+    "Deva",
+    "deva.world"
   ],
-  "author": "Quinn Michaels",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/indraai/WebDeva/issues"
   },
   "dependencies": {
-    "@indra.ai/deva": "^1.0.25",
-    "axios": "^0.21.4",
-    "cheerio": "^1.0.0-rc.10",
-    "fast-xml-parser": "^4.0.11"
+    "@indra.ai/deva": "^1.2.22",
+    "axios": "^1.6.3",
+    "cheerio": "^1.0.0-rc.12",
+    "fast-xml-parser": "^4.3.2"
   },
   "homepage": "https://github.com/indraai/WebDeva#readme"
 }
