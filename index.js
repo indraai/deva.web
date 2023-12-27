@@ -221,9 +221,9 @@ const WEB = new Deva({
   onError(err) {
     console.error(err);
   },
-  onInit() {
+  onInit(data) {
     this.modules.xmlparser = new XMLParser();
-    return this.start();
+    return this.start(data);
   }
 });
 module.exports = WEB
