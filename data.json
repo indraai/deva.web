@@ -99,6 +99,9 @@
         "help": "Deva is viewing the help",
         "artist": "Crafting a masterpiece",
         "ask": "Asking about what matters"
+      },
+      "rss": {
+        "max_records": 10
       }
     }
   }
