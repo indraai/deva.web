@@ -23,10 +23,110 @@
     "url": "https://github.com/indraai/WebDeva/issues"
   },
   "dependencies": {
-    "@indra.ai/deva": "^1.2.22",
+    "@indra.ai/deva": "^1.5.22",
     "axios": "^1.6.3",
     "cheerio": "^1.0.0-rc.12",
     "fast-xml-parser": "^4.3.2"
   },
-  "homepage": "https://github.com/indraai/WebDeva#readme"
+  "homepage": "https://github.com/indraai/WebDeva#readme",
+  "data": {
+    "agent": {
+      "id": 5005309339223,
+      "key": "web",
+      "prompt": {
+        "emoji": "🌎",
+        "text": "Web",
+        "colors": {
+          "label": {
+            "R": 0,
+            "G": 150,
+            "B": 255
+          },
+          "text": {
+            "R": 101,
+            "G": 192,
+            "B": 255
+          }
+        }
+      },
+      "profile": {
+        "name": "Web Deva",
+        "pronouns": "He, Him",
+        "gender": "DEVA",
+        "creator": "Quinn Michaels",
+        "owner": "Quinn Michaels",
+        "created": "August 27, 2023 at 12:42 PM",
+        "house": "House Deva",
+        "temple": "Kedarnath Temple (Vadari)",
+        "forest": "Pushkara",
+        "city": "Amaravati",
+        "region": "Svarga",
+        "land": "Visisipra",
+        "planet": "Arjika",
+        "loka": "Devaloka",
+        "verse": "Rikverse",
+        "system": "deva.world",
+        "describe": "Web Deva for calling website http/https resources.",
+        "emoji": "/public/devas/web/emoji.png",
+        "avatar": "/public/devas/web/avatar.png",
+        "background": "/public/devas/web/background.png",
+        "voice": "onyx",
+        "style": "A modern oil painter."
+      }
+    },
+    "vars": {
+      "messages": {
+        "init": "🟠 INIT",
+        "start": "🔵 START",
+        "enter": "🟢 ENTER",
+        "stop": "🔴 STOP",
+        "exit": "🟡 EXIT",
+        "done": "🟣 DONE",
+        "error": "💣 ERROR!"
+      },
+      "live": {
+        "profile": "deva",
+        "max_tokens": 50,
+        "words": 25,
+        "history": [],
+        "max_chats": 10,
+        "page_token": ""
+      },
+      "ask": {
+        "max_tokens": 500,
+        "words": 200,
+        "history": []
+      },
+      "reply": {
+        "profile": "deva",
+        "max_tokens": 300,
+        "words": 100,
+        "history": []
+      },
+      "comment": {
+        "profile": "deva",
+        "max_tokens": 300,
+        "words": 100,
+        "history": []
+      },
+      "art": {
+        "history": []
+      },
+      "headers": {
+        "USER": "Indra:WebDeva https://indra.ai",
+        "HASH": "0x5005309339223",
+        "AGENT": "#WebDeva:5005309339223"
+      },
+      "context": {
+        "uid": "Deva is creating a uid",
+        "status": "Deva is viewing the status",
+        "help": "Deva is viewing the help",
+        "artist": "Crafting a masterpiece",
+        "ask": "Asking about what matters"
+      },
+      "rss": {
+        "max_records": 10
+      }
+    }
+  }
 }
