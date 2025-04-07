@@ -1,25 +1,31 @@
 // Copyright (c)2022 Quinn Michaels
-const axios = require('axios');
-const cheerio = require('cheerio');
-const {XMLParser} = require('fast-xml-parser');
+import Deva from '@indra.ai/deva';
 
-const package = require('./package.json');
+import axios from 'axios';
+import cheerio from 'cheerio';
+import {XMLParser} from 'fast-xml-parser';
+import pkg from './package.json' with {type:'json'};
+const {agent,vars} = pkg.data;
+
+// set the __dirname
+import {dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';    
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const info = {
-  id: package.id,
-  name: package.name,
-  version: package.version,
-  author: package.author,
-  describe: package.description,
+  id: pkg.id,
+  name: pkg.name,
+  version: pkg.version,
+  author: pkg.author,
+  describe: pkg.description,
   dir: __dirname,
-  url: package.homepage,
-  git: package.repository.url,
-  bugs: package.bugs.url,
-  license: package.license,
-  copyright: package.copyright
+  url: pkg.homepage,
+  git: pkg.repository.url,
+  bugs: pkg.bugs.url,
+  license: pkg.license,
+  copyright: pkg.copyright
 };
 
-const {agent,vars} = require('./data.json').DATA;
-const Deva = require('@indra.ai/deva');
 const WEB = new Deva({
   info,
   agent,
@@ -216,12 +222,14 @@ const WEB = new Deva({
       return this.func.rss(packet.q);
     },
   },
-  onError(err) {
+  onError(err, reject) {
     console.error(err);
+    return reject(err);
   },
-  onInit(data) {
+  onReady(data, resolve) {
     this.modules.xmlparser = new XMLParser();
+    this.prompt(this.vars.messages.ready);
     return this.start(data);
   }
 });
-module.exports = WEB
+export default WEB

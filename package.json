@@ -1,26 +1,29 @@
 {
-  "id": 5005309339223,
-  "name": "@indra.ai/webdeva",
-  "version": "0.0.16",
+  "id": 2730114881156,
+  "name": "@indra.ai/deva.web",
+  "version": "0.0.0",
   "author": "Quinn Michaels",
   "license": "MIT",
-  "copyright": "2023",
+  "copyright": "(c)2025 Quinn Michaels; All rights reserved.",
   "description": "The Web Deva",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/indraai/WebDeva.git"
+    "url": "git+ssh://git@github.com/indraai/deva.web.git"
   },
   "keywords": [
     "Web",
     "Deva",
-    "deva.world"
+    "Deva.world",
+    "Deva.space",
+    "Deva.cloud"
   ],
   "bugs": {
-    "url": "https://github.com/indraai/WebDeva/issues"
+    "url": "https://github.com/indraai/deva.web/issues"
   },
   "dependencies": {
     "@indra.ai/deva": "^1.5.22",
@@ -28,10 +31,10 @@
     "cheerio": "^1.0.0-rc.12",
     "fast-xml-parser": "^4.3.2"
   },
-  "homepage": "https://github.com/indraai/WebDeva#readme",
+  "homepage": "https://deva.space/devas/web",
   "data": {
     "agent": {
-      "id": 5005309339223,
+      "id": 1524213241067,
       "key": "web",
       "prompt": {
         "emoji": "🌎",
@@ -55,7 +58,7 @@
         "gender": "DEVA",
         "creator": "Quinn Michaels",
         "owner": "Quinn Michaels",
-        "created": "August 27, 2023 at 12:42 PM",
+        "created": "Monday, April 7, 2025 - 2:01:32 P",
         "house": "House Deva",
         "temple": "Kedarnath Temple (Vadari)",
         "forest": "Pushkara",
@@ -82,31 +85,11 @@
         "stop": "🔴 STOP",
         "exit": "🟡 EXIT",
         "done": "🟣 DONE",
-        "error": "💣 ERROR!"
-      },
-      "live": {
-        "profile": "deva",
-        "max_tokens": 50,
-        "words": 25,
-        "history": [],
-        "max_chats": 10,
-        "page_token": ""
+        "error": "💣 ERROR!",
+        "read": "⭐️ READY!"
       },
       "ask": {
-        "max_tokens": 500,
-        "words": 200,
-        "history": []
-      },
-      "reply": {
-        "profile": "deva",
-        "max_tokens": 300,
-        "words": 100,
-        "history": []
-      },
-      "comment": {
-        "profile": "deva",
-        "max_tokens": 300,
-        "words": 100,
+        "max_tokens": 250,
         "history": []
       },
       "art": {
@@ -115,7 +98,7 @@
       "headers": {
         "USER": "Indra:WebDeva https://indra.ai",
         "HASH": "0x5005309339223",
-        "AGENT": "#WebDeva:5005309339223"
+        "AGENT": "#web:deva:5005309339223"
       },
       "context": {
         "uid": "Deva is creating a uid",
