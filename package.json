@@ -26,7 +26,7 @@
     "url": "https://github.com/indraai/deva.web/issues"
   },
   "dependencies": {
-    "@indra.ai/deva": "^1.5.22",
+    "@indra.ai/deva": "^1.5.23",
     "axios": "^1.6.3",
     "cheerio": "^1.0.0-rc.12",
     "fast-xml-parser": "^4.3.2"
@@ -86,7 +86,8 @@
         "exit": "🟡 EXIT",
         "done": "🟣 DONE",
         "error": "💣 ERROR!",
-        "read": "⭐️ READY!"
+        "ready": "⭐️ READY!",
+        "no_url": "⛔️ URL Not Provided"
       },
       "ask": {
         "max_tokens": 250,
@@ -105,7 +106,11 @@
         "status": "Deva is viewing the status",
         "help": "Deva is viewing the help",
         "artist": "Crafting a masterpiece",
-        "ask": "Asking about what matters"
+        "ask": "Asking about what matters",
+        "post": "📤 Post",
+        "get": "📥 Get",
+        "json": "🧸 JSON",
+        "rss": "📄 RSS"
       },
       "rss": {
         "max_records": 10

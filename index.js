@@ -77,17 +77,19 @@ const WEB = new Deva({
     params: url
     describe: get a url response.
     ***************/
-    get(url) {
+    get(url, id=false) {
       this.action('func', 'get');
       return new Promise((resolve, reject) => {
-        if (!url) return reject('NO URL');
+        if (!url) return reject(this.vars.messages.no_url);
+        this.state('get', url);
         axios.get(url, {
           headers: this.vars.headers
         }).then(result => {
+          this.state('return', `func:get:${id}`);
           return resolve(this.utils.process(result.data));
         }).catch(err => {
-          console.log('web error', err)
-          return this.error(err);
+          this.state('catch', `func:get:${id}`);
+          return this.error(err, url, reject);
         })
       });
     },
@@ -173,30 +175,37 @@ const WEB = new Deva({
   },
   methods: {
     post(packet) {
+      this.context('post', packet.id);
+      this.action('method', `post:${packet.id}`);
       return this.func.post(packet.q);
     },
     get(packet) {
+      this.context('get', packet.id);
+      this.action('method', `get:${packet.id}`);
       return new Promise((resolve, reject) => {
-        this.func.get(packet.q.text).then(result => {
-          this.state('resolve', 'get');
+        this.func.get(packet.q.text, packet.id).then(result => {
+          this.state('resolve', `get:${packet.id}`);
           return resolve({
-            text: true,
-            html: true,
-            data: true,
+            text: result,
+            html: result,
+            data: false,
           })
         }).catch(err => {
-          this.state('reject', 'get');
+          this.state('catch', `get:${packet.id}`);
           return this.error(err, packet, reject);
         })
       });
     },
     json(packet) {
+      this.context('json', packet.id);
+      this.action('method', `json:${packet.id}`);
       return this.func.json(packet.q.text);
     },
     rss(packet) {
+      this.context('rss', packet.id);
       return new Promise((resolve, reject) => {
         if (!packet) return resolve(this._messages.nopacket);
-        if (!packet.q.text) return resolce(this._messages.notext);
+        if (!packet.q.text) return resolve(this._messages.notext);
         if (packet.q.meta.params[1]) this.vars.rss.max_records = packet.q.meta.params[1];
         const data = {};
 
@@ -229,7 +238,7 @@ const WEB = new Deva({
   onReady(data, resolve) {
     this.modules.xmlparser = new XMLParser();
     this.prompt(this.vars.messages.ready);
-    return this.start(data);
+    return resolve(data);
   }
 });
 export default WEB
