@@ -1,10 +1,7 @@
-::begin:center
-image: /public/devas/::agent_key::/main.png
-::end:center
+::BEGIN:MAIN
+# {{profile.name}}
 
-# ::agent_name::
-
-::profile::
+{{profile}}
 
 p:The Web Deva helps all the other Devas with their calling websites to get information. With the Web Deva you can give a url and the Agent will return the data response from your request. Be Careful this could be DANGEROUS!
 
@@ -21,10 +18,11 @@ p:This method will return a rss feed from a specific url.
 
 ---
 
-copyright: (c)2023 Quinn Michaels
 
 ::begin:hidden
-#color = ::agent_color::
-#bgcolor = ::agent_bgcolor::
-#bg = ::agent_background::
+#color = {{profile.color}}
+#bgcolor = {{profile.bgcolor}}
+#bg = {{profile.background}}
+copyright: (c)2025 Quinn Michaels
 ::end:hidden
+::END:MAIN
