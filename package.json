@@ -26,7 +26,7 @@
     "url": "https://github.com/indraai/deva.web/issues"
   },
   "dependencies": {
-    "@indra.ai/deva": "^1.5.35",
+    "@indra.ai/deva": "^1.5.38",
     "axios": "^1.6.3",
     "cheerio": "^1.0.0-rc.12",
     "fast-xml-parser": "^4.3.2"
@@ -53,7 +53,8 @@
         }
       },
       "profile": {
-        "name": "#WebDeva",
+        "name": "Web Deva",
+        "hashtag": "#WebDeva",
         "title": "Web Deva",
         "subtitle": "Managing web requests",
         "describe": "Managing web requests for http, https, json, rss, and other formats.",
